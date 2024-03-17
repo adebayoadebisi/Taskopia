@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardContent, Typography, CardActions, Button, TextField, MenuItem, Chip } from '@mui/material';
 
-function TaskItem({ task, editTask, deleteTask, updateTaskStatus }) {
+function TaskItem({ task, editTask, deleteTask, onDragStart}) {
     const [isEditing, setIsEditing] = useState(false);
     const [editedTitle, setEditedTitle] = useState(task.title);
     const [editedDescription, setEditedDescription] = useState(task.description);
@@ -27,8 +27,16 @@ function TaskItem({ task, editTask, deleteTask, updateTaskStatus }) {
         setIsEditing(false); // Exit edit mode after saving changes
     };
 
+    const handleDragStart = (e) => {
+        onDragStart(e, task.id);
+    };
+
     return (
-        <Card sx={{ mb: 2 }}>
+        <Card 
+            sx={{ mb: 2 }}
+            draggable 
+            onDragStart={handleDragStart}
+        >
             <CardContent>
                 {isEditing ? (
                     // Edit mode UI

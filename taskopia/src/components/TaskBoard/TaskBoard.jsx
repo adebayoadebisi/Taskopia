@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import TaskForm from '../TaskForm/TaskForm';
-import TaskList from '../TaskList/TaskList';
+// import TaskList from '../TaskList/TaskList';
+import TaskItem from '../TaskItem/TaskItem';
 import { v4 as uuidv4 } from 'uuid';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 function TaskBoard() {
     const [tasks, setTasks] = useState([]);
@@ -32,19 +33,62 @@ function TaskBoard() {
     };
 
     const updateTaskStatus = (id, newStatus) => {
-        setTasks(prevTasks => prevTasks.map(task => task.id === id ? { ...task, status: newStatus } : task));
+        setTasks(prevTasks => prevTasks.map(task => {
+            if (task.id === id) {
+                // Return a new object for the task with the updated status
+                return { ...task, status: newStatus };
+            }
+            return task;
+        }));
+    };
+    
+
+    // Handler to start the drag
+    const onDragStart = (e, id) => {
+        e.dataTransfer.setData("id", id);
     };
 
+    // Handle drop to update the task's status
+    const onDrop = (e, newStatus) => {
+        e.preventDefault();
+        const taskId = e.dataTransfer.getData("id");
+        updateTaskStatus(taskId, newStatus);
+    };
+
+    // Allow drop
+    const onDragOver = (e) => {
+        e.preventDefault();
+    };
+
+    // Modify this part to assign the draggable attribute and onDragStart handler to each task item in your TaskList component rendering.
+    // The TaskList and TaskItem components will need to be updated accordingly to accept onDragStart and draggable props.
     return (
         <Box sx={{ minHeight: '100vh', bgcolor: 'grey.100', py: 6, px: 2 }}>
             <TaskForm addTask={addTask} />
-            <div>
-                <TaskList title="To Do" tasks={tasks.filter(task => task.status === 'To Do')} editTask={editTask} deleteTask={deleteTask} updateTaskStatus={updateTaskStatus} />
-                <TaskList title="Doing" tasks={tasks.filter(task => task.status === 'Doing')} editTask={editTask} deleteTask={deleteTask} updateTaskStatus={updateTaskStatus} />
-                <TaskList title="Done" tasks={tasks.filter(task => task.status === 'Done')} editTask={editTask} deleteTask={deleteTask} updateTaskStatus={updateTaskStatus} />
+            <div style={{ display: 'flex', justifyContent: 'space-around', padding: '20px' }}>
+                {['To Do', 'Doing', 'Done'].map((status, index) => (
+                    <Box
+                        onDrop={(e) => onDrop(e, status)}
+                        onDragOver={onDragOver}
+                        sx={{ border: '1px dashed gray', padding: '20px', width: '30%' }}
+                        key={index}
+                    >
+                        <Typography variant="h6" sx={{ textAlign: 'center' }}>{status}</Typography>
+                        {tasks.filter(task => task.status === status).map((task, index) => (
+                            <TaskItem
+                                key={task.id}
+                                task={task}
+                                editTask={editTask}
+                                deleteTask={deleteTask}
+                                onDragStart={onDragStart}
+                            />
+                        ))}
+                    </Box>
+                ))}
             </div>
         </Box>
     );
 }
 
 export default TaskBoard;
+
