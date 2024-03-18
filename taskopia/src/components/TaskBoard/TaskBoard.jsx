@@ -28,7 +28,7 @@ function TaskBoard() {
     const updateTaskStatus = (id, newStatus) => {
         setTasks(prevTasks => prevTasks.map(task => {
             if (task.id === id) {
-                // Return a new object for the task with the updated status
+                // This Returns a new object for the task with the updated status
                 return { ...task, status: newStatus };
             }
             return task;
@@ -53,8 +53,6 @@ function TaskBoard() {
         e.preventDefault();
     };
 
-    // Modify this part to assign the draggable attribute and onDragStart handler to each task item in your TaskList component rendering.
-    // The TaskList and TaskItem components will need to be updated accordingly to accept onDragStart and draggable props.
     return (
         <Box
             sx={{

@@ -8,7 +8,7 @@ function Header() {
                 <Typography variant="h6"style={{ display: 'flex', justifyContent: 'center'}}>
                     <img src="/public/logo.svg" style={{ width: '50%', padding: '40px' }} />
                 </Typography>
-                {/* Navigation Links or Buttons can be added here */}
+                {/* We can add Navigation Links or Buttons here */}
             </Toolbar>
         </AppBar>
     );
