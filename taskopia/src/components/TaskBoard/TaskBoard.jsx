@@ -6,17 +6,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { Box, Typography } from '@mui/material';
 
 function TaskBoard() {
-    const [tasks, setTasks] = useState([]);
+    const [tasks, setTasks] = useState(localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [] || []);
 
     useEffect(() => {
-        const storedTasks = localStorage.getItem('tasks');
-        if (storedTasks) {
-            setTasks(JSON.parse(storedTasks));
-        }
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem('tasks', JSON.stringify(tasks));
+        localStorage.setItem('tasks', JSON.stringify(tasks))
     }, [tasks]);
 
     const addTask = (newTask) => {
@@ -122,4 +115,5 @@ function TaskBoard() {
 }
 
 export default TaskBoard;
+
 
