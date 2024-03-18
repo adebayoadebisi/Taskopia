@@ -62,7 +62,7 @@ function TaskForm({ addTask }) {
                     <MenuItem value="Low">Low</MenuItem>
                 </Select>
             </FormControl>
-            <Button type="submit" variant="contained" color="primary" sx={{ mt: 2, width: '100%' }}>
+            <Button type="submit" variant="contained" color="primary" sx={{ mt: 2, width: '100%', backgroundImage: 'linear-gradient(45deg, #0095ff 30%, #0072ff 90%)' }}>
                 Add Task
             </Button>
         </Box>

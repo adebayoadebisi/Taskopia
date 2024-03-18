@@ -56,7 +56,7 @@ function TaskBoard() {
     // Modify this part to assign the draggable attribute and onDragStart handler to each task item in your TaskList component rendering.
     // The TaskList and TaskItem components will need to be updated accordingly to accept onDragStart and draggable props.
     return (
-        <Box sx={{ minHeight: '100vh', bgcolor: 'grey.100', py: 6, px: 2 }}>
+        <Box sx={{ minHeight: '100vh', bgcolor: 'grey.100', py: 6, px: 2, color: 'grey' }}>
             <TaskForm addTask={addTask} />
             <div style={{ display: 'flex', justifyContent: 'space-around', padding: '20px' }}>
                 {['To Do', 'Doing', 'Done'].map((status, index) => (
