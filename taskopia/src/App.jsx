@@ -10,7 +10,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<TaskBoard />} />
-          {/* Add other routes here as needed */}
+          {/* We can Add other routes here as needed */}
         </Routes>
       </div>
     </Router>
