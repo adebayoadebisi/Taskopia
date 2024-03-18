@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardContent, Typography, CardActions, Button, TextField, MenuItem, Chip } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditNoteIcon from '@mui/icons-material/EditNote';
 
 function TaskItem({ task, editTask, deleteTask, onDragStart}) {
     const [isEditing, setIsEditing] = useState(false);
@@ -98,10 +100,10 @@ function TaskItem({ task, editTask, deleteTask, onDragStart}) {
                 )}
             </CardContent>
             <CardActions>
-                <Button size="small" color="primary" onClick={isEditing ? handleSave : () => setIsEditing(true)}>
+                <Button variant="contained" startIcon={<EditNoteIcon />} size="small" color="primary" onClick={isEditing ? handleSave : () => setIsEditing(true)}>
                     {isEditing ? 'Save' : 'Edit'}
                 </Button>
-                <Button size="small" color="error" onClick={() => deleteTask(task.id)}>
+                <Button variant="contained" startIcon={<DeleteIcon />} size="small" color="error" onClick={() => deleteTask(task.id)}>
                     Delete
                 </Button>
             </CardActions>
