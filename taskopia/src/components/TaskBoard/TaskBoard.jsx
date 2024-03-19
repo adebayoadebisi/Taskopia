@@ -62,7 +62,7 @@ function TaskBoard() {
         <Box
             sx={{
                 minHeight: '100vh',
-                bgcolor: 'grey.100',
+                bgcolor: 'white',
                 py: 6,
                 px: 2,
                 display: 'flex',
@@ -97,7 +97,8 @@ function TaskBoard() {
                             onDrop={(e) => onDrop(e, status)}
                             onDragOver={onDragOver}
                             sx={{
-                                border: '1px dashed gray',
+                                border: '1px solid black',
+                                borderRadius: 5,
                                 padding: 2,
                                 minHeight: '250px',
                                 bgcolor: 'background.paper',
