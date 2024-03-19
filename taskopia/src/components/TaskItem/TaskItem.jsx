@@ -3,7 +3,7 @@ import { Card, CardContent, Typography, CardActions, Button, TextField, MenuItem
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 
-function TaskItem({ task, editTask, deleteTask, onDragStart}) {
+function TaskItem({ task, editTask, deleteTask, onDragStart }) {
     const [isEditing, setIsEditing] = useState(false);
     const [editedTitle, setEditedTitle] = useState(task.title);
     const [editedDescription, setEditedDescription] = useState(task.description);
@@ -34,12 +34,8 @@ function TaskItem({ task, editTask, deleteTask, onDragStart}) {
     };
 
     return (
-        <Card 
-            sx={{ mb: 2 }}
-            draggable 
-            onDragStart={handleDragStart}
-        >
-            <CardContent>
+        <Card sx={{ mt: 2 }} draggable onDragStart={handleDragStart}>
+            <CardContent sx={{ p: 2 }}>
                 {isEditing ? (
                     // Edit mode UI
                     <>
@@ -98,15 +94,15 @@ function TaskItem({ task, editTask, deleteTask, onDragStart}) {
                         />
                     </>
                 )}
+                <CardActions sx={{ p: 0, mt: 2 }}>
+                    <Button variant="contained" startIcon={<EditNoteIcon />} size="small" color="primary" onClick={isEditing ? handleSave : () => setIsEditing(true)}>
+                        {isEditing ? 'Save' : 'Edit'}
+                    </Button>
+                    <Button variant="contained" startIcon={<DeleteIcon />} size="small" color="error" onClick={() => deleteTask(task.id)}>
+                        Delete
+                    </Button>
+                </CardActions>
             </CardContent>
-            <CardActions>
-                <Button variant="contained" startIcon={<EditNoteIcon />} size="small" color="primary" onClick={isEditing ? handleSave : () => setIsEditing(true)}>
-                    {isEditing ? 'Save' : 'Edit'}
-                </Button>
-                <Button variant="contained" startIcon={<DeleteIcon />} size="small" color="error" onClick={() => deleteTask(task.id)}>
-                    Delete
-                </Button>
-            </CardActions>
         </Card>
     );
 }

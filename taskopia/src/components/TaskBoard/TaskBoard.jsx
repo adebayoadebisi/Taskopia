@@ -58,7 +58,7 @@ function TaskBoard() {
             sx={{
                 minHeight: '100vh',
                 bgcolor: 'grey.100',
-                py: 6,
+                pb: 6,
                 px: 2,
                 display: 'flex',
                 flexDirection: { xs: 'column', md: 'row' }, // Stack vertically on small screens, horizontally on medium and up
@@ -76,9 +76,10 @@ function TaskBoard() {
                     flexWrap: 'wrap', // Allows items to wrap as needed
                     width: '100%', // Ensures the container takes full width of its parent
                     gap: 2, // Adds gap between boards
+                    mt: 2,
                 }}
             >
-                {['To Do', 'Doing', 'Done'].map((status, index) => (
+                {['To Do', 'In Progress', 'Done'].map((status, index) => (
                     <Box
                         onDrop={(e) => onDrop(e, status)}
                         onDragOver={onDragOver}
@@ -92,10 +93,11 @@ function TaskBoard() {
                             display: 'flex',
                             flexDirection: 'column',
                             gap: 1, // Adds gap between tasks
+                            alignSelf: 'start',
                         }}
                         key={index}
                     >
-                        <Typography variant="h6" sx={{ textAlign: 'center' }}>{status}</Typography>
+                        <Typography variant="h4" sx={{ fontWeight: 'bold', color: 'rgb(0 123 255 / 61%)', textAlign: 'center', m: -2, p: 2, backgroundImage: 'linear-gradient(to right, rgb(194 229 156 / 0.3), rgb(100 179 244 / 0.3))' }}>{status}</Typography>
                         {tasks.filter(task => task.status === status).map((task, index) => (
                             <TaskItem
                                 key={task.id}

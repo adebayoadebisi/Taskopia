@@ -5,8 +5,8 @@ import AddTaskIcon from '@mui/icons-material/AddTask';
 function TaskForm({ addTask }) {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [dueDate, setDueDate] = useState('');
-    const [priority, setPriority] = useState('');
+    const [dueDate, setDueDate] = useState(new Date().toISOString().slice(0, 10));
+    const [priority, setPriority] = useState('Low');
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -14,8 +14,8 @@ function TaskForm({ addTask }) {
         // Reset form fields
         setTitle('');
         setDescription('');
-        setDueDate('');
-        setPriority('');
+        setDueDate(new Date().toISOString().slice(0, 10));
+        setPriority('Low');
     };
 
     return (
