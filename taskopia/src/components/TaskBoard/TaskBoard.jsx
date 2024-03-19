@@ -97,7 +97,7 @@ function TaskBoard() {
                             onDrop={(e) => onDrop(e, status)}
                             onDragOver={onDragOver}
                             sx={{
-                                border: '1px solid black',
+                                border: '1px solid #c7c7c7',
                                 borderRadius: 5,
                                 padding: 2,
                                 minHeight: '250px',
@@ -107,7 +107,7 @@ function TaskBoard() {
                                 },
                             }}
                         >
-                            <Typography variant="h4" sx={{ fontWeight: 'bold', color: 'rgb(0 123 255 / 61%)', textAlign: 'center', m: -2, p: 2, backgroundImage: 'linear-gradient(to right, rgb(194 229 156 / 0.3), rgb(100 179 244 / 0.3))' }}>{status}</Typography>
+                            <Typography variant="h4" sx={{ fontWeight: 'bold', color: 'rgb(0 123 255 / 61%)', textAlign: 'center', borderRadius: 5, m: -2, p: 2, backgroundImage: 'linear-gradient(to right, rgb(194 229 156 / 0.3), rgb(100 179 244 / 0.3))' }}>{status}</Typography>
                             {tasks.filter((task) => task.status === status).map((task, index) => (
                                 <TaskItem
                                     key={task.id}
