@@ -21,7 +21,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" mt={1}>
       {'Copyright © '}
-      <Link href="https://mui.com/">Sitemark&nbsp;</Link>
+      <Link href="https://mui.com/">Taskopia&nbsp;</Link>
       {new Date().getFullYear()}
     </Typography>
   );
@@ -59,10 +59,10 @@ export default function Footer() {
             <Box sx={{ ml: '-15px' }}>
               <img
                 src={
-                  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
+                  '../public/logo.svg'
                 }
                 style={logoStyle}
-                alt="logo of sitemark"
+                alt="logo of taskopia"
               />
             </Box>
             <Typography variant="body2" fontWeight={300} gutterBottom>
