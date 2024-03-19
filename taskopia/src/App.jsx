@@ -4,6 +4,7 @@ import Header from './components/Header/Header';
 import TaskBoard from './components/TaskBoard/TaskBoard';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Weather from './components/Weather/Weather';
+import Footer from './components/Footer/Footer';
 
 const theme = createTheme({
   typography: {
@@ -23,13 +24,15 @@ function App() {
           <Weather />
           <Routes>
             <Route path="/" element={<TaskBoard />} />
-            {/* Add other routes here as needed */}
+            {/* Define other routes here as needed */}
           </Routes>
+          <Footer /> {/* Render the Footer component outside of Routes */}
         </div>
       </Router>
     </ThemeProvider>
   );
 }
+
 
 export default App;
 
