@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header/Header';
 import TaskBoard from './components/TaskBoard/TaskBoard';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import Wheater from './components/Weather/Weather';
+import Weather from './components/Weather/Weather';
 
 const theme = createTheme({
   typography: {
@@ -20,7 +20,7 @@ function App() {
       <Router>
         <div className="App">
           <Header />
-          <Wheater />
+          <Weather />
           <Routes>
             <Route path="/" element={<TaskBoard />} />
             {/* Add other routes here as needed */}

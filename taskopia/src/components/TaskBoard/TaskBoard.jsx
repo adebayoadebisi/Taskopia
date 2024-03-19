@@ -1,51 +1,56 @@
 import React, { useState, useEffect } from 'react';
 import TaskForm from '../TaskForm/TaskForm';
-// import TaskList from '../TaskList/TaskList';
 import TaskItem from '../TaskItem/TaskItem';
 import { v4 as uuidv4 } from 'uuid';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Button, Grid } from '@mui/material';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import ClearAllIcon from '@mui/icons-material/ClearAll';
 
 function TaskBoard() {
-    const [tasks, setTasks] = useState(localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [] || []);
+    const [tasks, setTasks] = useState(localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : []);
+    const [open, setOpen] = useState(false);
 
     useEffect(() => {
-        localStorage.setItem('tasks', JSON.stringify(tasks))
+        localStorage.setItem('tasks', JSON.stringify(tasks));
     }, [tasks]);
 
     const addTask = (newTask) => {
         const taskWithId = { ...newTask, id: uuidv4(), status: 'To Do' };
-        setTasks(prevTasks => [...prevTasks, taskWithId]);
+        setTasks((prevTasks) => [...prevTasks, taskWithId]);
     };
 
     const editTask = (id, updatedFields) => {
-        setTasks(prevTasks => prevTasks.map(task => task.id === id ? { ...task, ...updatedFields } : task));
+        setTasks((prevTasks) => prevTasks.map((task) => (task.id === id ? { ...task, ...updatedFields } : task)));
     };
 
     const deleteTask = (id) => {
-        setTasks(prevTasks => prevTasks.filter(task => task.id !== id));
+        setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
     };
 
-    const updateTaskStatus = (id, newStatus) => {
-        setTasks(prevTasks => prevTasks.map(task => {
-            if (task.id === id) {
-                // This Returns a new object for the task with the updated status
-                return { ...task, status: newStatus };
-            }
-            return task;
-        }));
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+    const clearAllTasks = () => {
+        setTasks([]); // Clear the state
+        localStorage.setItem('tasks', JSON.stringify([])); // Update localStorage
     };
 
-
-    // Handler to start the drag
+    // Handle drag start
     const onDragStart = (e, id) => {
         e.dataTransfer.setData("id", id);
     };
 
-    // Handle drop to update the task's status
+    // Handle task drop
     const onDrop = (e, newStatus) => {
         e.preventDefault();
-        const taskId = e.dataTransfer.getData("id");
-        updateTaskStatus(taskId, newStatus);
+        const id = e.dataTransfer.getData("id");
+        const updatedTasks = tasks.map((task) => {
+            if (task.id === id) {
+                return { ...task, status: newStatus };
+            }
+            return task;
+        });
+        setTasks(updatedTasks);
     };
 
     // Allow drop
@@ -58,62 +63,68 @@ function TaskBoard() {
             sx={{
                 minHeight: '100vh',
                 bgcolor: 'grey.100',
-                pb: 6,
+                py: 6,
                 px: 2,
                 display: 'flex',
-                flexDirection: { xs: 'column', md: 'row' }, // Stack vertically on small screens, horizontally on medium and up
-                justifyContent: 'center',
-                alignItems: 'flex-start',
-                gap: 2, // Adds gap between children
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: 2,
             }}
         >
-            <TaskForm addTask={addTask} />
-            <Box
-                sx={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'space-around',
-                    flexWrap: 'wrap', // Allows items to wrap as needed
-                    width: '100%', // Ensures the container takes full width of its parent
-                    gap: 2, // Adds gap between boards
-                    mt: 2,
-                }}
-            >
-                {['To Do', 'In Progress', 'Done'].map((status, index) => (
-                    <Box
-                        onDrop={(e) => onDrop(e, status)}
-                        onDragOver={onDragOver}
-                        sx={{
-                            border: '1px dashed gray',
-                            padding: 2,
-                            minWidth: '250px', // Minimum width for each board
-                            maxWidth: '400px', // Maximum width to avoid boards getting too wide
-                            width: { xs: '100%', sm: 'calc(33.333% - 16px)' }, // Adjusts width based on screen size
-                            flex: '1 1 auto', // Allows boards to grow and shrink as needed
-                            display: 'flex',
-                            flexDirection: 'column',
-                            gap: 1, // Adds gap between tasks
-                            alignSelf: 'start',
-                        }}
-                        key={index}
-                    >
-                        <Typography variant="h4" sx={{ fontWeight: 'bold', color: 'rgb(0 123 255 / 61%)', textAlign: 'center', m: -2, p: 2, backgroundImage: 'linear-gradient(to right, rgb(194 229 156 / 0.3), rgb(100 179 244 / 0.3))' }}>{status}</Typography>
-                        {tasks.filter(task => task.status === status).map((task, index) => (
-                            <TaskItem
-                                key={task.id}
-                                task={task}
-                                editTask={editTask}
-                                deleteTask={deleteTask}
-                                onDragStart={onDragStart}
-                            />
-                        ))}
-                    </Box>
-                ))}
+            <Box sx={{ display: 'flex', gap: 2 }}>
+                <Button
+                    variant="contained"
+                    startIcon={<AddCircleOutlineIcon />}
+                    onClick={handleOpen}
+                    sx={{ backgroundImage: 'linear-gradient(45deg, #0095ff 30%, #0072ff 90%)' }}
+                >
+                    Create Task
+                </Button>
+                <Button
+                    variant="contained"
+                    startIcon={<ClearAllIcon />}
+                    onClick={clearAllTasks} // Call clearAllTasks when clicked
+                    sx={{ backgroundImage: 'linear-gradient(45deg, #ff1744 30%, #ff4569 90%)' }} // Adjust the color for visual distinction
+                >
+                    Clear Board
+                </Button>
             </Box>
+            <TaskForm addTask={addTask} open={open} handleClose={handleClose} />
+            <Grid container spacing={2} justifyContent="center">
+                {['To Do', 'In Progress', 'Done'].map((status) => (
+                    <Grid item xs={12} sm={4} key={status}>
+                        <Box
+                            onDrop={(e) => onDrop(e, status)}
+                            onDragOver={onDragOver}
+                            sx={{
+                                border: '1px dashed gray',
+                                padding: 2,
+                                minHeight: '250px',
+                                bgcolor: 'background.paper',
+                                '&:hover': {
+                                    borderColor: 'primary.main',
+                                },
+                            }}
+                        >
+                            <Typography variant="h4" sx={{ fontWeight: 'bold', color: 'rgb(0 123 255 / 61%)', textAlign: 'center', m: -2, p: 2, backgroundImage: 'linear-gradient(to right, rgb(194 229 156 / 0.3), rgb(100 179 244 / 0.3))' }}>{status}</Typography>
+                            {tasks.filter((task) => task.status === status).map((task, index) => (
+                                <TaskItem
+                                    key={task.id}
+                                    task={task}
+                                    editTask={editTask}
+                                    deleteTask={deleteTask}
+                                    onDragStart={onDragStart}
+                                />
+                            ))}
+                        </Box>
+                    </Grid>
+                ))}
+            </Grid>
         </Box>
     );
 }
 
 export default TaskBoard;
+
 
 

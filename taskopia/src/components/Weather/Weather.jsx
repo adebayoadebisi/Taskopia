@@ -41,16 +41,16 @@ const Weather = () => {
                 });
 
                 const hours = new Date().getHours();
-                let timeOfDay = 'Good evening';
+                let timeOfDay = 'Good Evening';
                 setIcon('moon');
                 if (hours < 6) {
-                    timeOfDay = 'Good night';
+                    timeOfDay = 'Good Night';
                     setIcon('bed');
                 } else if (hours < 12) {
-                    timeOfDay = 'Good morning';
+                    timeOfDay = 'Good Morning';
                     setIcon('mug-hot');
                 } else if (hours < 18) {
-                    timeOfDay = 'Good afternoon';
+                    timeOfDay = 'Good Afternoon';
                     setIcon('clover');
                 }
                 setGreeting(timeOfDay);
@@ -64,7 +64,7 @@ const Weather = () => {
 
     return (
         <Paper elevation={3} style={{ padding: '10px', gap: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <Typography variant="h6" style={{ color: '#88c6d3' }}>{greeting} taskopian <FontAwesomeIcon icon={icon} color='#c2e59c' /> </Typography>
+            <Typography variant="h6" style={{ color: '#88c6d3' }}>{greeting} Taskopian <FontAwesomeIcon icon={icon} color='#c2e59c' /> </Typography>
             {weatherData ? (
                 <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
                     <Typography variant="body1">{weatherData.name}</Typography>
