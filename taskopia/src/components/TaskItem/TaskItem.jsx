@@ -34,7 +34,7 @@ function TaskItem({ task, editTask, deleteTask, onDragStart }) {
     };
 
     return (
-        <Card sx={{ mt: 2 }} draggable onDragStart={handleDragStart}>
+        <Card sx={{ mt: 3 }} draggable onDragStart={handleDragStart}>
             <CardContent sx={{ p: 2 }}>
                 {isEditing ? (
                     // Edit mode UI
