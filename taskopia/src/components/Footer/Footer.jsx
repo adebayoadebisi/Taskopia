@@ -8,9 +8,11 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
-import FacebookIcon from '@mui/icons-material/GitHub';
+import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import TwitterIcon from '@mui/icons-material/X';
+import XIcon from '@mui/icons-material/X';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
 
 const logoStyle = {
   width: '140px',
@@ -21,7 +23,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" mt={1}>
       {'Copyright © '}
-      <Link href="https://mui.com/">Taskopia&nbsp;</Link>
+      <Link href="#">Taskopia&nbsp;</Link>
       {new Date().getFullYear()}
     </Typography>
   );
@@ -82,11 +84,11 @@ export default function Footer() {
                 placeholder="Your email address"
                 inputProps={{
                   autoComplete: 'off',
-                  'aria-label': 'Enter your email address', // Corrected from ariaLabel to 'aria-label'
+                  'aria-label': 'Enter your email address',
                 }}
               />
 
-              <Button variant="contained" color="primary" sx={{ flexShrink: 0 }}>
+              <Button variant="contained" sx={{ flexShrink: 0, backgroundImage: 'linear-gradient(45deg, #0095ff 30%, #0072ff 90%)'}}>
                 Subscribe
               </Button>
             </Stack>
@@ -104,16 +106,7 @@ export default function Footer() {
           </Typography>
           <Link color="text.secondary" href="#">
             Features
-          </Link>
-          <Link color="text.secondary" href="#">
-            Testimonials
-          </Link>
-          <Link color="text.secondary" href="#">
-            Highlights
-          </Link>
-          <Link color="text.secondary" href="#">
-            Pricing
-          </Link>
+          </Link>          
           <Link color="text.secondary" href="#">
             FAQs
           </Link>
@@ -196,7 +189,7 @@ export default function Footer() {
             aria-label="GitHub"
             sx={{ alignSelf: 'center' }}
           >
-            <FacebookIcon />
+            <GitHubIcon />
           </IconButton>
           <IconButton
             color="inherit"
@@ -204,7 +197,7 @@ export default function Footer() {
             aria-label="X"
             sx={{ alignSelf: 'center' }}
           >
-            <TwitterIcon />
+            <XIcon />
           </IconButton>
           <IconButton
             color="inherit"
@@ -213,6 +206,22 @@ export default function Footer() {
             sx={{ alignSelf: 'center' }}
           >
             <LinkedInIcon />
+          </IconButton>
+          <IconButton
+            color="inherit"
+            href="https://www.facebook.com/material.ui"
+            aria-label="Facebook"
+            sx={{ alignSelf: 'center' }}
+          >
+            <FacebookIcon />
+          </IconButton>
+          <IconButton
+            color="inherit"
+            href="https://www.instagram.com/material.ui/"
+            aria-label="Instagram"
+            sx={{ alignSelf: 'center' }}
+          >
+            <InstagramIcon />
           </IconButton>
         </Stack>
       </Box>

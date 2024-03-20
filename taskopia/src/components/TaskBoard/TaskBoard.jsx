@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TaskForm from '../TaskForm/TaskForm';
 import TaskItem from '../TaskItem/TaskItem';
+import TaskCounter from '../TaskCounter/TaskCounter';
 import { v4 as uuidv4 } from 'uuid';
 import { Box, Typography, Button, Grid } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
@@ -71,6 +72,13 @@ function TaskBoard() {
                 gap: 2,
             }}
         >
+            {/* Task View Title and Task Counter Component */}
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
+                    Task View
+                </Typography>
+                <TaskCounter tasks={tasks} />
+            </Box>
             <Box sx={{ display: 'flex', gap: 2 }}>
                 <Button
                     variant="contained"
@@ -84,7 +92,7 @@ function TaskBoard() {
                     variant="contained"
                     startIcon={<ClearAllIcon />}
                     onClick={clearAllTasks} // Call clearAllTasks when clicked
-                    sx={{ backgroundImage: 'linear-gradient(45deg, #ff1744 30%, #ff4569 90%)' }} // Adjust the color for visual distinction
+                    sx={{ backgroundImage: 'linear-gradient(45deg, #ff1744 30%, #ff4569 90%)' }}
                 >
                     Clear Board
                 </Button>
@@ -98,7 +106,7 @@ function TaskBoard() {
                             onDragOver={onDragOver}
                             sx={{
                                 border: '1px solid #c7c7c7',
-                                borderRadius: 5,
+                                borderRadius: 3,
                                 padding: 2,
                                 minHeight: '250px',
                                 bgcolor: 'background.paper',
@@ -107,7 +115,7 @@ function TaskBoard() {
                                 },
                             }}
                         >
-                            <Typography variant="h4" sx={{ fontWeight: 'bold', color: 'rgb(0 123 255 / 61%)', textAlign: 'center', borderRadius: 5, m: -2, p: 2, backgroundImage: 'linear-gradient(to right, rgb(194 229 156 / 0.3), rgb(100 179 244 / 0.3))' }}>{status}</Typography>
+                            <Typography variant="h4" sx={{ fontWeight: 'bold', color: 'rgb(0 123 255 / 61%)', textAlign: 'center', borderRadius: 3, m: -2, p: 2, backgroundImage: 'linear-gradient(to right, rgb(194 229 156 / 0.3), rgb(100 179 244 / 0.3))' }}>{status}</Typography>
                             {tasks.filter((task) => task.status === status).map((task, index) => (
                                 <TaskItem
                                     key={task.id}

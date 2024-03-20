@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Card, CardContent, Typography, CardActions, Button, TextField, MenuItem, Chip } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditNoteIcon from '@mui/icons-material/EditNote';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 function TaskItem({ task, editTask, deleteTask, onDragStart }) {
     const [isEditing, setIsEditing] = useState(false);
@@ -9,6 +10,15 @@ function TaskItem({ task, editTask, deleteTask, onDragStart }) {
     const [editedDescription, setEditedDescription] = useState(task.description);
     const [editedDueDate, setEditedDueDate] = useState(task.dueDate);
     const [editedPriority, setEditedPriority] = useState(task.priority);
+
+    // Function to calculate the number of days left
+    const calculateDaysLeft = (dueDate) => {
+        const today = new Date();
+        const due = new Date(dueDate);
+        const difference = due - today;
+        const daysLeft = Math.ceil(difference / (1000 * 3600 * 24));
+        return daysLeft > 0 ? daysLeft : `-${Math.abs(daysLeft)}`; // Show negative days as past due
+    };
 
     // Function to determine the color based on priority
     const getPriorityColor = (priority) => {
@@ -32,6 +42,9 @@ function TaskItem({ task, editTask, deleteTask, onDragStart }) {
     const handleDragStart = (e) => {
         onDragStart(e, task.id);
     };
+
+    const daysLeft = calculateDaysLeft(task.dueDate); // Calculate days left
+    const daysLeftColor = getPriorityColor(task.priority); // Use priority color for days left
 
     return (
         <Card sx={{ mt: 3 }} draggable onDragStart={handleDragStart}>
@@ -95,12 +108,19 @@ function TaskItem({ task, editTask, deleteTask, onDragStart }) {
                     </>
                 )}
                 <CardActions sx={{ p: 0, mt: 2 }}>
-                    <Button variant="contained" startIcon={<EditNoteIcon />} size="small" color="primary" onClick={isEditing ? handleSave : () => setIsEditing(true)}>
+                    <Button variant="contained" startIcon={<EditNoteIcon />} size="small" sx={{ backgroundImage: 'linear-gradient(45deg, #4caf50 30%, #087f23 90%)' }}
+                        onClick={isEditing ? handleSave : () => setIsEditing(true)}>
                         {isEditing ? 'Save' : 'Edit'}
                     </Button>
-                    <Button variant="contained" startIcon={<DeleteIcon />} size="small" color="error" onClick={() => deleteTask(task.id)}>
+                    <Button variant="contained" startIcon={<DeleteIcon />} size="small" sx={{ backgroundImage: 'linear-gradient(45deg, #ff1744 30%, #ff4569 90%)' }} onClick={() => deleteTask(task.id)}>
                         Delete
                     </Button>
+                    <Chip
+                        icon={<AccessTimeIcon />}
+                        label={`${daysLeft} days left`}
+                        color={daysLeftColor}
+                        size="small"
+                    />
                 </CardActions>
             </CardContent>
         </Card>
