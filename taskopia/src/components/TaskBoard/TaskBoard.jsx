@@ -74,7 +74,18 @@ function TaskBoard() {
         >
             {/* Task View Title and Task Counter Component */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <Typography variant="h4" sx={{ fontWeight: 'bold', color: '#0095ff' }}>
+                <Typography variant="h4" sx={{
+                    ml: 2,
+                    fontWeight: 'bold', color: '#0095ff',
+                    fontSize: {
+                        xs: '1.5rem', // smaller font size on extra-small screens
+                        sm: '1.5rem', // slightly bigger font size on small screens
+                        md: '2.2rem', // default font size on medium screens and above
+                    },
+                    overflow: 'hidden', // Prevent text from overflowing
+                    textOverflow: 'ellipsis', // Add an ellipsis to text that overflows
+                    // whiteSpace: 'nowrap', // Keep the text on a single line
+                }}>
                     Task View
                 </Typography>
                 <TaskCounter tasks={tasks} />
