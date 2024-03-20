@@ -21,7 +21,7 @@ function Header() {
                     // Adjust the size of the Typography if necessary
                 }}>
                     {/* Adjust the size and padding of the logo as needed */}
-                    <img src="/src/assets/logo.svg" style={{ width: '600%', padding: '40px' }} alt="Logo" />
+                    <img src="logo.svg" style={{ width: '600%', padding: '40px' }} alt="Logo" />
                 </Typography>
                 {/* We can add Navigation Links or Buttons here */}
             </Toolbar>

@@ -61,7 +61,7 @@ export default function Footer() {
             <Box sx={{ ml: '-15px' }}>
               <img
                 src={
-                  '../public/logo.svg'
+                  'logo.svg'
                 }
                 style={logoStyle}
                 alt="logo of taskopia"
