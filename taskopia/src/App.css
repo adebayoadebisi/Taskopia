@@ -1,1 +1,4 @@
-/* We don't need to use this. Will delete before submission */
+/* in index.css or App.css */
+body {
+    background-color: #0f1112 !important;
+}

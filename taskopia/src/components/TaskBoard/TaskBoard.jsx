@@ -63,7 +63,7 @@ function TaskBoard() {
         <Box
             sx={{
                 minHeight: '100vh',
-                bgcolor: 'white',
+                bgcolor: '#0f1112',
                 py: 6,
                 px: 2,
                 display: 'flex',
@@ -74,17 +74,23 @@ function TaskBoard() {
         >
             {/* Task View Title and Task Counter Component */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
+                <Typography variant="h4" sx={{ fontWeight: 'bold', color: '#0095ff' }}>
                     Task View
                 </Typography>
                 <TaskCounter tasks={tasks} />
             </Box>
-            <Box sx={{ display: 'flex', gap: 2 }}>
+            <Box sx={{ display: 'flex', gap: 4 }}>
                 <Button
                     variant="contained"
                     startIcon={<AddCircleOutlineIcon />}
                     onClick={handleOpen}
-                    sx={{ backgroundImage: 'linear-gradient(45deg, #0095ff 30%, #0072ff 90%)' }}
+                    sx={{
+                        backgroundImage: 'linear-gradient(45deg, #0095ff 30%, #0072ff 90%)',
+                        '&:hover': {
+                            transform: 'scale(1.1)',
+                        },
+                        transition: 'transform 0.3s ease-in-out, color 0.3s ease-in-out',
+                    }}
                 >
                     Create Task
                 </Button>
@@ -92,7 +98,13 @@ function TaskBoard() {
                     variant="contained"
                     startIcon={<ClearAllIcon />}
                     onClick={clearAllTasks} // Call clearAllTasks when clicked
-                    sx={{ backgroundImage: 'linear-gradient(45deg, #ff1744 30%, #ff4569 90%)' }}
+                    sx={{
+                        backgroundImage: 'linear-gradient(45deg, #ff1744 30%, #ff4569 90%)',
+                        '&:hover': {
+                            transform: 'scale(1.1)',
+                        },
+                        transition: 'transform 0.3s ease-in-out, color 0.3s ease-in-out',
+                    }}
                 >
                     Clear Board
                 </Button>
@@ -105,17 +117,18 @@ function TaskBoard() {
                             onDrop={(e) => onDrop(e, status)}
                             onDragOver={onDragOver}
                             sx={{
-                                border: '1px solid #c7c7c7',
+                                border: '1px solid #0f1112',
                                 borderRadius: 3,
                                 padding: 2,
                                 minHeight: '250px',
-                                bgcolor: 'background.paper',
+                                bgcolor: '#0f1112',
                                 '&:hover': {
                                     borderColor: 'primary.main',
                                 },
+                                boxShadow: '0px 0px 5px rgba(255, 255, 255, 0.8)',
                             }}
                         >
-                            <Typography variant="h4" sx={{ fontWeight: 'bold', color: 'rgb(0 123 255 / 61%)', textAlign: 'center', borderRadius: 3, m: -2, p: 2, backgroundImage: 'linear-gradient(to right, rgb(194 229 156 / 0.3), rgb(100 179 244 / 0.3))' }}>{status}</Typography>
+                            <Typography variant="h4" sx={{ fontWeight: 'bold', color: '#ffffff', textAlign: 'center', borderRadius: 3, m: -2, p: 2, backgroundColor: '#0f1112' }}>{status}</Typography>
                             {tasks.filter((task) => task.status === status).map((task, index) => (
                                 <TaskItem
                                     key={task.id}
