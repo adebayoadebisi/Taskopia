@@ -43,7 +43,7 @@ function TaskForm({ addTask, open, handleClose }) {
             aria-describedby="modal-modal-description"
         >
             <Box sx={style} component="form" onSubmit={handleSubmit}>
-                <Typography variant="h6" gutterBottom>
+                <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold', color: 'rgb(0 123 255 / 61%)', textAlign: 'center' }}>
                     Add Task
                 </Typography>
                 <TextField

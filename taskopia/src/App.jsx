@@ -23,10 +23,9 @@ function App() {
           <Header />
           <Weather />
           <Routes>
-            <Route path="/" element={<TaskBoard />} />
-            {/* Define other routes here as needed */}
+            <Route path="/" element={<TaskBoard />} />           
           </Routes>
-          <Footer /> {/* Render the Footer component outside of Routes */}
+          <Footer />
         </div>
       </Router>
     </ThemeProvider>
