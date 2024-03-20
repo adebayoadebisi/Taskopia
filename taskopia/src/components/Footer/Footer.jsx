@@ -21,7 +21,7 @@ const logoStyle = {
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="text.secondary" mt={1}>
+    <Typography variant="body2" color="text.secondary" mt={1} sx={{ color: '#fff' }}>
       {'Copyright © '}
       <Link href="#">Taskopia&nbsp;</Link>
       {new Date().getFullYear()}
@@ -67,10 +67,10 @@ export default function Footer() {
                 alt="logo of taskopia"
               />
             </Box>
-            <Typography variant="body2" fontWeight={300} gutterBottom>
+            <Typography variant="body2" fontWeight={300} gutterBottom sx={{ color: '#fff' }}>
               Newsletter
             </Typography>
-            <Typography variant="body2" color="text.secondary" mb={2}>
+            <Typography variant="body2" color="text.secondary" mb={2} sx={{ color: '#fff' }}>
               Subscribe to our newsletter for weekly updates and promotions.
             </Typography>
             <Stack direction="row" spacing={1} useFlexGap>
@@ -82,13 +82,24 @@ export default function Footer() {
                 fullWidth
                 aria-label="Enter your email address"
                 placeholder="Your email address"
-                inputProps={{
-                  autoComplete: 'off',
-                  'aria-label': 'Enter your email address',
+                InputProps={{
+                  style: { color: 'white' }, // Changes the input text color
+                }}
+                sx={{
+                  input: { color: 'white' }, // Ensure the text color is white
+                  '& label.Mui-focused': { color: 'white' }, // Label color when focused
+                  '& .MuiInput-underline:before': { borderBottomColor: 'white' }, // Underline color before focus
+                  '& .MuiInput-underline:after': { borderBottomColor: 'white' }, // Underline color on focus
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': { borderColor: 'white' }, // Border color
+                    '&:hover fieldset': { borderColor: 'white' }, // Border color on hover
+                    '&.Mui-focused fieldset': { borderColor: 'white' }, // Border color on focus
+                  },
                 }}
               />
 
-              <Button variant="contained" sx={{ flexShrink: 0, backgroundImage: 'linear-gradient(45deg, #0095ff 30%, #0072ff 90%)'}}>
+
+              <Button variant="contained" sx={{ flexShrink: 0, backgroundImage: 'linear-gradient(45deg, #0095ff 30%, #0072ff 90%)' }}>
                 Subscribe
               </Button>
             </Stack>
@@ -101,13 +112,13 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography variant="body2" fontWeight={600}>
+          <Typography variant="body2" fontWeight={600} sx={{ color: '#fff' }}>
             Product
           </Typography>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" href="#" sx={{ color: '#fff' }}>
             Features
-          </Link>          
-          <Link color="text.secondary" href="#">
+          </Link>
+          <Link color="text.secondary" href="#" sx={{ color: '#fff' }}>
             FAQs
           </Link>
         </Box>
@@ -118,16 +129,16 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography variant="body2" fontWeight={600}>
+          <Typography variant="body2" fontWeight={600} sx={{ color: '#fff' }}>
             Company
           </Typography>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" href="#" sx={{ color: '#fff' }}>
             About us
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" href="#" sx={{ color: '#fff' }}>
             Careers
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" href="#" sx={{ color: '#fff' }}>
             Press
           </Link>
         </Box>
@@ -138,16 +149,16 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography variant="body2" fontWeight={600}>
+          <Typography variant="body2" fontWeight={600} sx={{ color: '#fff' }}>
             Legal
           </Typography>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" href="#" sx={{ color: '#fff' }}>
             Terms
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" href="#" sx={{ color: '#fff' }}>
             Privacy
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" href="#" sx={{ color: '#fff' }}>
             Contact
           </Link>
         </Box>
@@ -159,17 +170,17 @@ export default function Footer() {
           pt: { xs: 4, sm: 8 },
           width: '100%',
           borderTop: '1px solid',
-          borderColor: 'divider',
+          borderColor: '#fff',
         }}
       >
         <div>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" href="#" sx={{ color: '#fff' }}>
             Privacy Policy
           </Link>
-          <Typography display="inline" sx={{ mx: 0.5, opacity: 0.5 }}>
+          <Typography display="inline" sx={{ mx: 0.5, opacity: 0.5, color: 'fff' }}>
             &nbsp;•&nbsp;
           </Typography>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" href="#" sx={{ color: '#fff' }}>
             Terms of Service
           </Link>
           <Copyright />
@@ -187,7 +198,14 @@ export default function Footer() {
             color="inherit"
             href="https://github.com/mui"
             aria-label="GitHub"
-            sx={{ alignSelf: 'center' }}
+            sx={{
+              color: '#0095ff', alignSelf: 'center',
+              '&:hover': {
+                color: '#fff',
+                transform: 'scale(1.2)',
+              },
+              transition: 'transform 0.3s ease-in-out, color 0.3s ease-in-out',
+            }}
           >
             <GitHubIcon />
           </IconButton>
@@ -195,7 +213,14 @@ export default function Footer() {
             color="inherit"
             href="https://twitter.com/MaterialUI"
             aria-label="X"
-            sx={{ alignSelf: 'center' }}
+            sx={{
+              color: '#0095ff', alignSelf: 'center',
+              '&:hover': {
+                color: '#fff',
+                transform: 'scale(1.2)',
+              },
+              transition: 'transform 0.3s ease-in-out, color 0.3s ease-in-out',
+            }}
           >
             <XIcon />
           </IconButton>
@@ -203,7 +228,14 @@ export default function Footer() {
             color="inherit"
             href="https://www.linkedin.com/company/mui/"
             aria-label="LinkedIn"
-            sx={{ alignSelf: 'center' }}
+            sx={{
+              color: '#0095ff', alignSelf: 'center',
+              '&:hover': {
+                color: '#fff',
+                transform: 'scale(1.2)',
+              },
+              transition: 'transform 0.3s ease-in-out, color 0.3s ease-in-out',
+            }}
           >
             <LinkedInIcon />
           </IconButton>
@@ -211,7 +243,14 @@ export default function Footer() {
             color="inherit"
             href="https://www.facebook.com/material.ui"
             aria-label="Facebook"
-            sx={{ alignSelf: 'center' }}
+            sx={{
+              color: '#0095ff', alignSelf: 'center',
+              '&:hover': {
+                color: '#fff',
+                transform: 'scale(1.2)',
+              },
+              transition: 'transform 0.3s ease-in-out, color 0.3s ease-in-out',
+            }}
           >
             <FacebookIcon />
           </IconButton>
@@ -219,7 +258,14 @@ export default function Footer() {
             color="inherit"
             href="https://www.instagram.com/material.ui/"
             aria-label="Instagram"
-            sx={{ alignSelf: 'center' }}
+            sx={{
+              color: '#0095ff', alignSelf: 'center',
+              '&:hover': {
+                color: '#fff',
+                transform: 'scale(1.2)',
+              },
+              transition: 'transform 0.3s ease-in-out, color 0.3s ease-in-out',
+            }}
           >
             <InstagramIcon />
           </IconButton>

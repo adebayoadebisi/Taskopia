@@ -63,14 +63,14 @@ const Weather = () => {
     }, []);
 
     return (
-        <Paper elevation={3} style={{ padding: '10px', gap: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <Typography variant="h5" sx={{ fontWeight: 'bold', color: 'rgb(0 123 255 / 61%)' }}>{greeting} Taskopian <FontAwesomeIcon icon={icon} color='#c2e59c' /> </Typography>
+        <Paper elevation={3} style={{ padding: '10px', gap: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', backgroundColor: '#0f1112' }}>
+            <Typography variant="h5" sx={{ fontWeight: 'bold', color: '#ffffff' }}>{greeting} Taskopian <FontAwesomeIcon icon={icon} color='#c2e59c' /> </Typography>
             {weatherData ? (
-                <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                    <Typography variant="body1">{weatherData.name}</Typography>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <Typography variant="body1" style={{ color: '#ffffff' }}>{weatherData.name}</Typography>
                     <Typography variant="body1">{weatherIcon}</Typography>
                     <Typography variant="h6" style={{ color: '#0095ff' }}>{weatherData.main.temp.toFixed(0)}°C</Typography>
-                    <Typography variant="body1">Feels like</Typography>
+                    <Typography variant="body1" style={{ color: '#ffffff' }}>Feels like</Typography>
                     <Typography variant="h6" style={{ color: '#0095ff' }}>{weatherData.main.feels_like.toFixed(0)}°C</Typography>
                 </div>
             ) : ''}

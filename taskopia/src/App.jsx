@@ -5,6 +5,7 @@ import TaskBoard from './components/TaskBoard/TaskBoard';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Weather from './components/Weather/Weather';
 import Footer from './components/Footer/Footer';
+import './App.css';
 
 const theme = createTheme({
   typography: {

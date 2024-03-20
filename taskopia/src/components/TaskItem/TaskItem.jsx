@@ -108,11 +108,17 @@ function TaskItem({ task, editTask, deleteTask, onDragStart }) {
                     </>
                 )}
                 <CardActions sx={{ p: 0, mt: 2 }}>
-                    <Button variant="contained" startIcon={<EditNoteIcon />} size="small" sx={{ backgroundImage: 'linear-gradient(45deg, #4caf50 30%, #087f23 90%)' }}
+                    <Button variant="contained" startIcon={<EditNoteIcon />} size="small" sx={{ backgroundImage: 'linear-gradient(45deg, #0095ff 30%, #0072ff 90%)', '&:hover': {
+                            transform: 'scale(1.1)',
+                        },
+                        transition: 'transform 0.3s ease-in-out, color 0.3s ease-in-out', }}
                         onClick={isEditing ? handleSave : () => setIsEditing(true)}>
                         {isEditing ? 'Save' : 'Edit'}
                     </Button>
-                    <Button variant="contained" startIcon={<DeleteIcon />} size="small" sx={{ backgroundImage: 'linear-gradient(45deg, #ff1744 30%, #ff4569 90%)' }} onClick={() => deleteTask(task.id)}>
+                    <Button variant="contained" startIcon={<DeleteIcon />} size="small" sx={{ backgroundImage: 'linear-gradient(45deg, #ff1744 30%, #ff4569 90%)', '&:hover': {
+                            transform: 'scale(1.1)',
+                        },
+                        transition: 'transform 0.3s ease-in-out, color 0.3s ease-in-out', }} onClick={() => deleteTask(task.id)}>
                         Delete
                     </Button>
                     <Chip
