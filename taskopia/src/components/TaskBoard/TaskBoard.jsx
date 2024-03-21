@@ -3,11 +3,14 @@ import TaskForm from '../TaskForm/TaskForm';
 import TaskItem from '../TaskItem/TaskItem';
 import TaskCounter from '../TaskCounter/TaskCounter';
 import { v4 as uuidv4 } from 'uuid';
-import { Box, Typography, Button, Grid } from '@mui/material';
+import { Box, Typography, Button, Grid, useMediaQuery, useTheme} from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
 
 function TaskBoard() {
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
     const [tasks, setTasks] = useState(localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : []);
     const [open, setOpen] = useState(false);
 
@@ -73,10 +76,8 @@ function TaskBoard() {
             }}
         >
             {/* Task View Title and Task Counter Component */}
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <Typography variant="h4" sx={{ fontWeight: 'bold', color: '#0095ff' }}>
-                    Task View
-                </Typography>
+            <Box sx={{ display: 'flex',flexDirection: isSmallScreen ? 'column' : 'row', alignItems: 'center', gap: 2, marginTop: 0, }}>
+                <Typography variant="h4" sx={{ fontWeight: 'bold', color: '#0095ff' }}>Task View</Typography>
                 <TaskCounter tasks={tasks} />
             </Box>
             <Box sx={{ display: 'flex', gap: 4 }}>

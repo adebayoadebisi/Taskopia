@@ -5,7 +5,7 @@ function Header() {
     return (
         <AppBar position="static" sx={{
             // Adjust the height of the AppBar
-            height: '250px',
+            height: '150px',
             // More styling options here...
         }}>
             <Toolbar sx={{
