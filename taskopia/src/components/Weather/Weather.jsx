@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Typography, Paper } from '@mui/material';
+import { Typography, Paper, useMediaQuery, useTheme } from '@mui/material';
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoon, faBed, faClover, faMugHot } from '@fortawesome/free-solid-svg-icons'
@@ -8,6 +8,9 @@ import { faMoon, faBed, faClover, faMugHot } from '@fortawesome/free-solid-svg-i
 library.add(faMoon, faBed, faClover, faMugHot);
 
 const Weather = () => {
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
     const [weatherData, setWeatherData] = useState(null);
     const [greeting, setGreeting] = useState('');
     const [icon, setIcon] = useState('clover');
@@ -28,8 +31,8 @@ const Weather = () => {
                     const weatherCondition = response.data.weather[0].main.toLowerCase();
                     const weatherIcons = {
                         'clear': '☀️',
-                        'clouds': '🌙☁️',
-                        'rain': '🌧️🌙',
+                        'clouds': '☁️',
+                        'rain': '🌧️',
                     };
                     const weatherIconValue = weatherIcons[weatherCondition] ?? '🌙';
                     setWeatherIcon(weatherIconValue);
@@ -63,15 +66,14 @@ const Weather = () => {
     }, []);
 
     return (
-        <Paper elevation={3} style={{ padding: '10px', gap: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', backgroundColor: '#0f1112' }}>
-            <Typography variant="h5" sx={{ fontWeight: 'bold', color: '#ffffff' }}>{greeting} Taskopian <FontAwesomeIcon icon={icon} color='#c2e59c' /> </Typography>
+        <Paper elevation={3} style={{ padding: '10px', gap: '20px', display: 'flex', flexDirection: isSmallScreen ? 'column' : 'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor: '#0f1112' }}>
+            <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#ffffff' }}>{greeting} Taskopian <FontAwesomeIcon icon={icon} color='#c2e59c' /> </Typography>
             {weatherData ? (
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <Typography variant="body1" style={{ color: '#ffffff' }}>{weatherData.name}</Typography>
-                    <Typography variant="body1">{weatherIcon}</Typography>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontWeight: 'bold' }}>
+                    <Typography variant="h6" style={{ color: '#ffffff' }}>{weatherData.name}</Typography>
+                    <Typography variant="h6">{weatherIcon}</Typography>
                     <Typography variant="h6" style={{ color: '#0095ff' }}>{weatherData.main.temp.toFixed(0)}°C</Typography>
-                    <Typography variant="body1" style={{ color: '#ffffff' }}>Feels like</Typography>
-                    <Typography variant="h6" style={{ color: '#0095ff' }}>{weatherData.main.feels_like.toFixed(0)}°C</Typography>
+
                 </div>
             ) : ''}
         </Paper>
