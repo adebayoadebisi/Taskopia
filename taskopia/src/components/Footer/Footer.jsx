@@ -83,17 +83,17 @@ export default function Footer() {
                 aria-label="Enter your email address"
                 placeholder="Your email address"
                 InputProps={{
-                  style: { color: 'white' }, // Changes the input text color
+                  style: { color: 'white' }, 
                 }}
                 sx={{
-                  input: { color: 'white' }, // Ensure the text color is white
-                  '& label.Mui-focused': { color: 'white' }, // Label color when focused
-                  '& .MuiInput-underline:before': { borderBottomColor: 'white' }, // Underline color before focus
-                  '& .MuiInput-underline:after': { borderBottomColor: 'white' }, // Underline color on focus
+                  input: { color: 'white' }, 
+                  '& label.Mui-focused': { color: 'white' },
+                  '& .MuiInput-underline:before': { borderBottomColor: 'white' }, 
+                  '& .MuiInput-underline:after': { borderBottomColor: 'white' },
                   '& .MuiOutlinedInput-root': {
-                    '& fieldset': { borderColor: 'white' }, // Border color
-                    '&:hover fieldset': { borderColor: 'white' }, // Border color on hover
-                    '&.Mui-focused fieldset': { borderColor: 'white' }, // Border color on focus
+                    '& fieldset': { borderColor: 'white' }, 
+                    '&:hover fieldset': { borderColor: 'white' }, 
+                    '&.Mui-focused fieldset': { borderColor: 'white' },
                   },
                 }}
               />
@@ -196,7 +196,7 @@ export default function Footer() {
         >
           <IconButton
             color="inherit"
-            href="https://github.com/mui"
+            href="https://github.com/adebayoadebisi/Taskopia"
             aria-label="GitHub"
             sx={{
               color: '#0095ff', alignSelf: 'center',
@@ -211,7 +211,7 @@ export default function Footer() {
           </IconButton>
           <IconButton
             color="inherit"
-            href="https://twitter.com/MaterialUI"
+            href="#"
             aria-label="X"
             sx={{
               color: '#0095ff', alignSelf: 'center',
@@ -241,7 +241,7 @@ export default function Footer() {
           </IconButton>
           <IconButton
             color="inherit"
-            href="https://www.facebook.com/material.ui"
+            href="#"
             aria-label="Facebook"
             sx={{
               color: '#0095ff', alignSelf: 'center',
@@ -256,7 +256,7 @@ export default function Footer() {
           </IconButton>
           <IconButton
             color="inherit"
-            href="https://www.instagram.com/material.ui/"
+            href="#"
             aria-label="Instagram"
             sx={{
               color: '#0095ff', alignSelf: 'center',
