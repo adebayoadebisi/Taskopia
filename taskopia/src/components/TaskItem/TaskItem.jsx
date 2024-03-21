@@ -47,7 +47,15 @@ function TaskItem({ task, editTask, deleteTask, onDragStart }) {
     const daysLeftColor = getPriorityColor(task.priority); // Use priority color for days left
 
     return (
-        <Card sx={{ mt: 3 }} draggable onDragStart={handleDragStart}>
+        <Card sx={{
+            mt: 3,
+            background: isEditing ? '#ffffff' : 'linear-gradient(45deg, #0095ff 30%, #0072ff 90%)', // Different colours for editing and default state
+            color: isEditing ? '#000' : '#fff',
+            '&:hover': {
+                transform: 'scale(1.03)',
+            },
+            transition: 'transform 0.3s ease-in-out, color 0.3s ease-in-out',
+        }} draggable onDragStart={handleDragStart}>
             <CardContent sx={{ p: 2 }}>
                 {isEditing ? (
                     // Edit mode UI
@@ -96,8 +104,8 @@ function TaskItem({ task, editTask, deleteTask, onDragStart }) {
                     // Display mode UI
                     <>
                         <Typography variant="h5">{task.title}</Typography>
-                        <Typography color="textSecondary">{task.description}</Typography>
-                        <Typography color="textSecondary" sx={{ mb: 2 }}>
+                        <Typography color="textSecondary" sx={{ mb: 2, color: '#fff' }}>{task.description}</Typography>
+                        <Typography color="textSecondary" sx={{ mb: 2, color: '#fff' }}>
                             Due Date: {task.dueDate}
                         </Typography>
                         <Chip
@@ -108,17 +116,21 @@ function TaskItem({ task, editTask, deleteTask, onDragStart }) {
                     </>
                 )}
                 <CardActions sx={{ p: 0, mt: 2 }}>
-                    <Button variant="contained" startIcon={<EditNoteIcon />} size="small" sx={{ backgroundImage: 'linear-gradient(45deg, #0095ff 30%, #0072ff 90%)', '&:hover': {
+                    <Button variant="contained" startIcon={<EditNoteIcon />} size="small" sx={{
+                        backgroundImage: 'linear-gradient(45deg, #FFA500 30%, #F28500 90%)', '&:hover': {
                             transform: 'scale(1.1)',
                         },
-                        transition: 'transform 0.3s ease-in-out, color 0.3s ease-in-out', }}
+                        transition: 'transform 0.3s ease-in-out, color 0.3s ease-in-out',
+                    }}
                         onClick={isEditing ? handleSave : () => setIsEditing(true)}>
                         {isEditing ? 'Save' : 'Edit'}
                     </Button>
-                    <Button variant="contained" startIcon={<DeleteIcon />} size="small" sx={{ backgroundImage: 'linear-gradient(45deg, #ff1744 30%, #ff4569 90%)', '&:hover': {
+                    <Button variant="contained" startIcon={<DeleteIcon />} size="small" sx={{
+                        backgroundImage: 'linear-gradient(45deg, #ff1744 30%, #ff4569 90%)', '&:hover': {
                             transform: 'scale(1.1)',
                         },
-                        transition: 'transform 0.3s ease-in-out, color 0.3s ease-in-out', }} onClick={() => deleteTask(task.id)}>
+                        transition: 'transform 0.3s ease-in-out, color 0.3s ease-in-out',
+                    }} onClick={() => deleteTask(task.id)}>
                         Delete
                     </Button>
                     <Chip
