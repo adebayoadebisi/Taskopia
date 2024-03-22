@@ -61,7 +61,11 @@ Tech Titans
 - [@texndo](https://github.com/texndo) Rutendo Kuuzabuwe 
 
 ## References
-[Inquirer JS](https://www.npmjs.com/package/inquirer)
+[Open Weather API](https://openweathermap.org/api)
+[Socket.io](https://www.npmjs.com/package/socket.io)
+[Material UI Docs](https://mui.com/)
+[Axios](https://axios-http.com/docs/intro)
+[useState](https://react.dev/reference/react/useState)
 
 ## License
 Licensed under [MIT License](LICENSE.md).
