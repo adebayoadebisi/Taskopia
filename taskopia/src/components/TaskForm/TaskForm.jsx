@@ -1,30 +1,32 @@
 import React, { useState } from 'react';
-import { Modal, TextField, Button, MenuItem, FormControl, InputLabel, Select, Box, Typography } from '@mui/material';
+import { Modal, TextField, Button, MenuItem, FormControl, InputLabel, Select, Box, Typography, useTheme, useMediaQuery } from '@mui/material';
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import CloseIcon from '@mui/icons-material/Close';
 
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400, 
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    borderRadius: 5,
-    boxShadow: 24,
-    p: 4,
-    display: 'flex',
-    flexDirection: 'column', 
-    alignItems: 'center', 
-    gap: 2, 
-};
 
 function TaskForm({ addTask, open, handleClose }) {
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [dueDate, setDueDate] = useState(new Date().toISOString().slice(0, 10));
     const [priority, setPriority] = useState('Low');
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: isSmallScreen ? '75%' : 400,
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        borderRadius: 5,
+        boxShadow: 24,
+        p: 4,
+        display: 'flex',
+        flexDirection: 'column', 
+        alignItems: 'center', 
+        gap: 2, 
+    };   
 
     const handleSubmit = (e) => {
         e.preventDefault();

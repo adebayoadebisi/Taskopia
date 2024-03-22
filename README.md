@@ -18,6 +18,16 @@ As a project manager, I want to efficiently organize and track tasks across mult
 ## Taskopia Application
 ### [View Application](https://taskopia.netlify.app)
 
+The following images shows Taskopia displaying a working application.
+
+![Taskopia: Screenshot](./taskopia/src/assets/taskopia.netlify.app.png)
+
+> **Note** This is a screenshot of the deployed Team Profile Generator App.
+
+![Taskopia: Screenshot Mobile](./taskopia/src/assets/taskopia.netlify.app-mobile.png)
+
+> **Note** This is a screenshot of the deployed Team Profile Generator Mobile.
+
 ## Technologies Used
 
 - [React](https://www.npmjs.com/package/react)
@@ -47,7 +57,7 @@ As a project manager, I want to efficiently organize and track tasks across mult
 ## Development Team
 Tech Titans
 - [@adebayoadebisi](https://github.com/adebayoadebisi) Adebayo Adebisi
-- [@gelisimduygusu](https://github.com/gelisimduygusu) Yasemin
+- [@gelisimduygusu](https://github.com/gelisimduygusu) Yasemin Sahin
 - [@texndo](https://github.com/texndo) Rutendo Kuuzabuwe 
 
 ## References
